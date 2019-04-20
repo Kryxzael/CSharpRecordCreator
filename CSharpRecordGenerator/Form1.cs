@@ -22,7 +22,7 @@ namespace CSharpRecordGenerator
 
         private void OnClickGenerate(object sender, EventArgs e)
         {
-            txtOutput.Text = GenerateRecord().Generate();
+            txtOutput.Text = GenerateRecord()?.Generate();
         }
 
         private Record GenerateRecord()
@@ -34,6 +34,12 @@ namespace CSharpRecordGenerator
                 if (i.IsNewRow)
                 {
                     continue;
+                }
+
+                if (i.Cells[0].Value == null || i.Cells[1].Value == null)
+                {
+                    MessageBox.Show("Please fill all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
                 }
 
                 r.Fields.Add(new RecordField(
