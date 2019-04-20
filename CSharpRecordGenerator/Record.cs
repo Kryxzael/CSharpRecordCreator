@@ -25,7 +25,7 @@ namespace CSharpRecordGenerator
         {
             StringBuilder s = new StringBuilder();
 
-            s.AppendLine($"public class {Name}");
+            s.AppendLine($"public class {Name.NormalizeCaps(true)}");
             s.AppendLine($"{{");
 
             //Generate fields
@@ -34,9 +34,40 @@ namespace CSharpRecordGenerator
                 s.AppendLine($"{IND}{i.ToSyntaxString(UsesProperites)}");
             }
 
+            CreateConstructor(s);
+            
+
+
             s.AppendLine($"}}");
 
             return s.ToString();
+        }
+
+        private void CreateConstructor(StringBuilder s)
+        {
+            s.AppendLine();
+            s.Append($"{IND}public {Name.NormalizeCaps(true)}(");
+
+            foreach (RecordField i in Fields)
+            {
+                s.Append($"{i.DataType} {i.Name.NormalizeCaps(false)},");
+            }
+
+            //Remove trailing comma
+            if (s[s.Length - 1] == ',')
+            {
+                s.Remove(s.Length - 1, 1);
+            }
+
+            s.AppendLine(")");
+            s.AppendLine($"{IND}{{");
+
+            foreach (RecordField i in Fields)
+            {
+                s.AppendLine($"{IND}{IND}{i.Name.NormalizeCaps(true)} = {i.Name.NormalizeCaps(false)};");
+            }
+
+            s.AppendLine($"{IND}}}");
         }
     }
 }
