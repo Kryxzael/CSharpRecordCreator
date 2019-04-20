@@ -26,7 +26,7 @@ namespace CSharpRecordGenerator
                 return $"public {DataType} {Name.NormalizeCaps(true)} {{ get; {(ReadOnly ? "" : "set; ")}}}";
             }
 
-            return $"public {DataType}{(ReadOnly ? " readonly" : "")} {Name.NormalizeCaps(true)};";
+            return $"public {(ReadOnly ? "readonly " : "")}{DataType} {Name.NormalizeCaps(true)};";
         }
     }
 }
