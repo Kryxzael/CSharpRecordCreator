@@ -10,5 +10,16 @@ namespace CSharpRecordGenerator
     {
         public string Name { get; set; }
         public string DataType { get; set; }
+
+        public RecordField(string dataType, string name)
+        {
+            DataType = dataType;
+            Name = name;
+        }
+
+        public string ToSyntaxString()
+        {
+            return $"public {DataType} {Name};";
+        }
     }
 }

@@ -18,6 +18,32 @@ namespace CSharpRecordGenerator
         public Form1()
         {
             InitializeComponent();
-        }   
+        }
+
+        private void OnClickGenerate(object sender, EventArgs e)
+        {
+            txtOutput.Text = GenerateRecord().Generate();
+        }
+
+        private Record GenerateRecord()
+        {
+            Record r = new Record(txtRecName.Text);
+
+            foreach (DataGridViewRow i in data.Rows)
+            {
+                if (i.IsNewRow)
+                {
+                    continue;
+                }
+
+                r.Fields.Add(new RecordField(
+                    dataType: i.Cells[0].Value.ToString(),
+                    name: i.Cells[1].Value.ToString()
+                ));
+            }
+
+
+            return r;
+        }
     }
 }
