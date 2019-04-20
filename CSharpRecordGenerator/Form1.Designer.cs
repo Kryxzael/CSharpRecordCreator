@@ -31,14 +31,15 @@ namespace CSharpRecordGenerator
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.data = new System.Windows.Forms.DataGridView();
-            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblName = new System.Windows.Forms.Label();
             this.txtRecName = new System.Windows.Forms.TextBox();
             this.btnGen = new System.Windows.Forms.Button();
             this.btnCopyAll = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.chkProp = new System.Windows.Forms.CheckBox();
+            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,8 +65,8 @@ namespace CSharpRecordGenerator
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnCopyAll);
             this.splitContainer1.Panel2.Controls.Add(this.txtOutput);
-            this.splitContainer1.Size = new System.Drawing.Size(512, 292);
-            this.splitContainer1.SplitterDistance = 270;
+            this.splitContainer1.Size = new System.Drawing.Size(726, 292);
+            this.splitContainer1.SplitterDistance = 382;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -85,7 +86,7 @@ namespace CSharpRecordGenerator
             this.splitContainer2.Panel2.Controls.Add(this.lblName);
             this.splitContainer2.Panel2.Controls.Add(this.txtRecName);
             this.splitContainer2.Panel2.Controls.Add(this.btnGen);
-            this.splitContainer2.Size = new System.Drawing.Size(270, 292);
+            this.splitContainer2.Size = new System.Drawing.Size(382, 292);
             this.splitContainer2.SplitterDistance = 211;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -94,28 +95,19 @@ namespace CSharpRecordGenerator
             this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmType,
-            this.clmName});
+            this.clmName,
+            this.clmReadOnly});
             this.data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data.Location = new System.Drawing.Point(0, 0);
             this.data.Name = "data";
-            this.data.Size = new System.Drawing.Size(270, 211);
+            this.data.Size = new System.Drawing.Size(382, 211);
             this.data.TabIndex = 0;
-            // 
-            // clmType
-            // 
-            this.clmType.HeaderText = "Data Type";
-            this.clmType.Name = "clmType";
-            // 
-            // clmName
-            // 
-            this.clmName.HeaderText = "Identifier";
-            this.clmName.Name = "clmName";
             // 
             // lblName
             // 
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(6, 56);
+            this.lblName.Location = new System.Drawing.Point(118, 56);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 2;
@@ -124,7 +116,7 @@ namespace CSharpRecordGenerator
             // txtRecName
             // 
             this.txtRecName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRecName.Location = new System.Drawing.Point(47, 53);
+            this.txtRecName.Location = new System.Drawing.Point(159, 53);
             this.txtRecName.Name = "txtRecName";
             this.txtRecName.Size = new System.Drawing.Size(142, 20);
             this.txtRecName.TabIndex = 1;
@@ -133,7 +125,7 @@ namespace CSharpRecordGenerator
             // btnGen
             // 
             this.btnGen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGen.Location = new System.Drawing.Point(195, 51);
+            this.btnGen.Location = new System.Drawing.Point(307, 51);
             this.btnGen.Name = "btnGen";
             this.btnGen.Size = new System.Drawing.Size(75, 23);
             this.btnGen.TabIndex = 0;
@@ -144,7 +136,7 @@ namespace CSharpRecordGenerator
             // btnCopyAll
             // 
             this.btnCopyAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyAll.Location = new System.Drawing.Point(160, 266);
+            this.btnCopyAll.Location = new System.Drawing.Point(262, 266);
             this.btnCopyAll.Name = "btnCopyAll";
             this.btnCopyAll.Size = new System.Drawing.Size(75, 23);
             this.btnCopyAll.TabIndex = 1;
@@ -159,7 +151,7 @@ namespace CSharpRecordGenerator
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
-            this.txtOutput.Size = new System.Drawing.Size(238, 292);
+            this.txtOutput.Size = new System.Drawing.Size(340, 292);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "[[OUTPUT]]";
             // 
@@ -175,11 +167,29 @@ namespace CSharpRecordGenerator
             this.chkProp.Text = "Generate with Properties";
             this.chkProp.UseVisualStyleBackColor = true;
             // 
+            // clmType
+            // 
+            this.clmType.HeaderText = "Data Type";
+            this.clmType.Name = "clmType";
+            // 
+            // clmName
+            // 
+            this.clmName.HeaderText = "Identifier";
+            this.clmName.Name = "clmName";
+            // 
+            // clmReadOnly
+            // 
+            this.clmReadOnly.HeaderText = "ROnly";
+            this.clmReadOnly.Name = "clmReadOnly";
+            this.clmReadOnly.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmReadOnly.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmReadOnly.Width = 50;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 292);
+            this.ClientSize = new System.Drawing.Size(726, 292);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(528, 331);
@@ -207,12 +217,13 @@ namespace CSharpRecordGenerator
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.Button btnCopyAll;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtRecName;
         private System.Windows.Forms.CheckBox chkProp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmReadOnly;
     }
 }
 

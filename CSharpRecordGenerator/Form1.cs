@@ -38,7 +38,8 @@ namespace CSharpRecordGenerator
 
                 r.Fields.Add(new RecordField(
                     dataType: i.Cells[0].Value.ToString(),
-                    name: i.Cells[1].Value.ToString()
+                    name: i.Cells[1].Value.ToString(),
+                    readOnly: (bool)i.Cells[2].Value
                 ));
             }
 

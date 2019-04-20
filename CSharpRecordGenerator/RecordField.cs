@@ -10,21 +10,23 @@ namespace CSharpRecordGenerator
     {
         public string Name { get; set; }
         public string DataType { get; set; }
+        public bool ReadOnly { get; set; }
 
-        public RecordField(string dataType, string name)
+        public RecordField(string dataType, string name, bool readOnly)
         {
             DataType = dataType;
             Name = name;
+            ReadOnly = readOnly;
         }
 
         public string ToSyntaxString(bool usesProperites)
         {
             if (usesProperites)
             {
-                return $"public {DataType} {Name} {{ get; set; }}";
+                return $"public {DataType} {Name} {{ get; {(ReadOnly ? "" : "set; ")}}}";
             }
 
-            return $"public {DataType} {Name};";
+            return $"public {DataType}{(ReadOnly ? " readonly" : "")} {Name};";
         }
     }
 }
