@@ -11,21 +11,23 @@ namespace CSharpRecordGenerator
         public string Name { get; set; }
         public List<RecordField> Fields { get; } = new List<RecordField>();
 
-        public bool UsesProperites { get; }
+        public bool UsesProperites { get; set; }
+        public bool CreateStruct { get; set; }
 
         public const string IND = "    ";
 
-        public Record(string name, bool usesProperties)
+        public Record(string name, bool usesProperties, bool createStruct)
         {
             Name = name;
             UsesProperites = usesProperties;
+            CreateStruct = createStruct;
         }
 
         public string Generate()
         {
             StringBuilder s = new StringBuilder();
 
-            s.AppendLine($"public class {Name.NormalizeCaps(true)}");
+            s.AppendLine($"public {(CreateStruct ? "struct" : "class" )} {Name.NormalizeCaps(true)}");
             s.AppendLine($"{{");
 
             //Generate fields
@@ -34,8 +36,10 @@ namespace CSharpRecordGenerator
                 s.AppendLine($"{IND}{i.ToSyntaxString(UsesProperites)}");
             }
 
-            CreateConstructor(s);
-            
+            if (!CreateStruct || Fields.Any())
+            {
+                CreateConstructor(s);
+            }            
 
 
             s.AppendLine($"}}");

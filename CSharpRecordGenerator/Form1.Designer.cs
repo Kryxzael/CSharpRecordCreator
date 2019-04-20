@@ -31,15 +31,16 @@ namespace CSharpRecordGenerator
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.data = new System.Windows.Forms.DataGridView();
+            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkProp = new System.Windows.Forms.CheckBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtRecName = new System.Windows.Forms.TextBox();
             this.btnGen = new System.Windows.Forms.Button();
             this.btnCopyAll = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.chkProp = new System.Windows.Forms.CheckBox();
-            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkStruct = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,6 +83,7 @@ namespace CSharpRecordGenerator
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.chkStruct);
             this.splitContainer2.Panel2.Controls.Add(this.chkProp);
             this.splitContainer2.Panel2.Controls.Add(this.lblName);
             this.splitContainer2.Panel2.Controls.Add(this.txtRecName);
@@ -102,6 +104,36 @@ namespace CSharpRecordGenerator
             this.data.Name = "data";
             this.data.Size = new System.Drawing.Size(382, 211);
             this.data.TabIndex = 0;
+            // 
+            // clmType
+            // 
+            this.clmType.HeaderText = "Data Type";
+            this.clmType.Name = "clmType";
+            // 
+            // clmName
+            // 
+            this.clmName.HeaderText = "Identifier";
+            this.clmName.Name = "clmName";
+            // 
+            // clmReadOnly
+            // 
+            this.clmReadOnly.HeaderText = "ROnly";
+            this.clmReadOnly.Name = "clmReadOnly";
+            this.clmReadOnly.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmReadOnly.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmReadOnly.Width = 50;
+            // 
+            // chkProp
+            // 
+            this.chkProp.AutoSize = true;
+            this.chkProp.Checked = true;
+            this.chkProp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkProp.Location = new System.Drawing.Point(3, 3);
+            this.chkProp.Name = "chkProp";
+            this.chkProp.Size = new System.Drawing.Size(142, 17);
+            this.chkProp.TabIndex = 3;
+            this.chkProp.Text = "Generate with Properties";
+            this.chkProp.UseVisualStyleBackColor = true;
             // 
             // lblName
             // 
@@ -155,35 +187,15 @@ namespace CSharpRecordGenerator
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "[[OUTPUT]]";
             // 
-            // chkProp
+            // chkStruct
             // 
-            this.chkProp.AutoSize = true;
-            this.chkProp.Checked = true;
-            this.chkProp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkProp.Location = new System.Drawing.Point(3, 3);
-            this.chkProp.Name = "chkProp";
-            this.chkProp.Size = new System.Drawing.Size(142, 17);
-            this.chkProp.TabIndex = 3;
-            this.chkProp.Text = "Generate with Properties";
-            this.chkProp.UseVisualStyleBackColor = true;
-            // 
-            // clmType
-            // 
-            this.clmType.HeaderText = "Data Type";
-            this.clmType.Name = "clmType";
-            // 
-            // clmName
-            // 
-            this.clmName.HeaderText = "Identifier";
-            this.clmName.Name = "clmName";
-            // 
-            // clmReadOnly
-            // 
-            this.clmReadOnly.HeaderText = "ROnly";
-            this.clmReadOnly.Name = "clmReadOnly";
-            this.clmReadOnly.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmReadOnly.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmReadOnly.Width = 50;
+            this.chkStruct.AutoSize = true;
+            this.chkStruct.Location = new System.Drawing.Point(3, 26);
+            this.chkStruct.Name = "chkStruct";
+            this.chkStruct.Size = new System.Drawing.Size(54, 17);
+            this.chkStruct.TabIndex = 4;
+            this.chkStruct.Text = "Struct";
+            this.chkStruct.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -224,6 +236,7 @@ namespace CSharpRecordGenerator
         private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmReadOnly;
+        private System.Windows.Forms.CheckBox chkStruct;
     }
 }
 
