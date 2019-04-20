@@ -196,6 +196,7 @@ namespace CSharpRecordGenerator
             this.btnCopyAll.TabIndex = 1;
             this.btnCopyAll.Text = "Copy All";
             this.btnCopyAll.UseVisualStyleBackColor = true;
+            this.btnCopyAll.Click += new System.EventHandler(this.OnCopyAllClicked);
             // 
             // txtOutput
             // 

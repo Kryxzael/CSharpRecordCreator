@@ -46,5 +46,10 @@ namespace CSharpRecordGenerator
 
             return r;
         }
+
+        private void OnCopyAllClicked(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtOutput.Text);
+        }
     }
 }
