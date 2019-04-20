@@ -11,11 +11,14 @@ namespace CSharpRecordGenerator
         public string Name { get; set; }
         public List<RecordField> Fields { get; } = new List<RecordField>();
 
+        public bool UsesProperites { get; }
+
         public const string IND = "    ";
 
-        public Record(string name)
+        public Record(string name, bool usesProperties)
         {
             Name = name;
+            UsesProperites = usesProperties;
         }
 
         public string Generate()
@@ -28,7 +31,7 @@ namespace CSharpRecordGenerator
             //Generate fields
             foreach (RecordField i in Fields)
             {
-                s.AppendLine($"{IND}{i.ToSyntaxString()}");
+                s.AppendLine($"{IND}{i.ToSyntaxString(UsesProperites)}");
             }
 
             s.AppendLine($"}}");

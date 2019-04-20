@@ -17,8 +17,13 @@ namespace CSharpRecordGenerator
             Name = name;
         }
 
-        public string ToSyntaxString()
+        public string ToSyntaxString(bool usesProperites)
         {
+            if (usesProperites)
+            {
+                return $"public {DataType} {Name} {{ get; set; }}";
+            }
+
             return $"public {DataType} {Name};";
         }
     }

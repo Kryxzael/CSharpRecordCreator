@@ -33,11 +33,12 @@ namespace CSharpRecordGenerator
             this.data = new System.Windows.Forms.DataGridView();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtRecName = new System.Windows.Forms.TextBox();
             this.btnGen = new System.Windows.Forms.Button();
             this.btnCopyAll = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.txtRecName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
+            this.chkProp = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +81,7 @@ namespace CSharpRecordGenerator
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.chkProp);
             this.splitContainer2.Panel2.Controls.Add(this.lblName);
             this.splitContainer2.Panel2.Controls.Add(this.txtRecName);
             this.splitContainer2.Panel2.Controls.Add(this.btnGen);
@@ -108,6 +110,25 @@ namespace CSharpRecordGenerator
             // 
             this.clmName.HeaderText = "Identifier";
             this.clmName.Name = "clmName";
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(6, 56);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Name";
+            // 
+            // txtRecName
+            // 
+            this.txtRecName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRecName.Location = new System.Drawing.Point(47, 53);
+            this.txtRecName.Name = "txtRecName";
+            this.txtRecName.Size = new System.Drawing.Size(142, 20);
+            this.txtRecName.TabIndex = 1;
+            this.txtRecName.Text = "Program";
             // 
             // btnGen
             // 
@@ -142,24 +163,17 @@ namespace CSharpRecordGenerator
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "[[OUTPUT]]";
             // 
-            // txtRecName
+            // chkProp
             // 
-            this.txtRecName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRecName.Location = new System.Drawing.Point(47, 53);
-            this.txtRecName.Name = "txtRecName";
-            this.txtRecName.Size = new System.Drawing.Size(142, 20);
-            this.txtRecName.TabIndex = 1;
-            this.txtRecName.Text = "Program";
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(6, 56);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
-            this.lblName.TabIndex = 2;
-            this.lblName.Text = "Name";
+            this.chkProp.AutoSize = true;
+            this.chkProp.Checked = true;
+            this.chkProp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkProp.Location = new System.Drawing.Point(3, 3);
+            this.chkProp.Name = "chkProp";
+            this.chkProp.Size = new System.Drawing.Size(142, 17);
+            this.chkProp.TabIndex = 3;
+            this.chkProp.Text = "Generate with Properties";
+            this.chkProp.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -198,6 +212,7 @@ namespace CSharpRecordGenerator
         private System.Windows.Forms.Button btnCopyAll;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtRecName;
+        private System.Windows.Forms.CheckBox chkProp;
     }
 }
 
