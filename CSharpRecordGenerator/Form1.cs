@@ -27,7 +27,7 @@ namespace CSharpRecordGenerator
 
         private Record GenerateRecord()
         {
-            Record r = new Record(txtRecName.Text, chkProp.Checked, chkStruct.Checked);
+            Record r = new Record(txtRecName.Text, chkProp.Checked, chkStruct.Checked, chkEquality.Checked);
 
             foreach (DataGridViewRow i in data.Rows)
             {

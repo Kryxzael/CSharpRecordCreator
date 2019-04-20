@@ -34,13 +34,14 @@ namespace CSharpRecordGenerator
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkEquality = new System.Windows.Forms.CheckBox();
+            this.chkStruct = new System.Windows.Forms.CheckBox();
             this.chkProp = new System.Windows.Forms.CheckBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtRecName = new System.Windows.Forms.TextBox();
             this.btnGen = new System.Windows.Forms.Button();
             this.btnCopyAll = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.chkStruct = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,6 +84,7 @@ namespace CSharpRecordGenerator
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.chkEquality);
             this.splitContainer2.Panel2.Controls.Add(this.chkStruct);
             this.splitContainer2.Panel2.Controls.Add(this.chkProp);
             this.splitContainer2.Panel2.Controls.Add(this.lblName);
@@ -122,6 +124,26 @@ namespace CSharpRecordGenerator
             this.clmReadOnly.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmReadOnly.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmReadOnly.Width = 50;
+            // 
+            // chkEquality
+            // 
+            this.chkEquality.AutoSize = true;
+            this.chkEquality.Location = new System.Drawing.Point(151, 3);
+            this.chkEquality.Name = "chkEquality";
+            this.chkEquality.Size = new System.Drawing.Size(159, 17);
+            this.chkEquality.TabIndex = 5;
+            this.chkEquality.Text = "Generate Equality Operators";
+            this.chkEquality.UseVisualStyleBackColor = true;
+            // 
+            // chkStruct
+            // 
+            this.chkStruct.AutoSize = true;
+            this.chkStruct.Location = new System.Drawing.Point(3, 26);
+            this.chkStruct.Name = "chkStruct";
+            this.chkStruct.Size = new System.Drawing.Size(54, 17);
+            this.chkStruct.TabIndex = 4;
+            this.chkStruct.Text = "Struct";
+            this.chkStruct.UseVisualStyleBackColor = true;
             // 
             // chkProp
             // 
@@ -186,16 +208,7 @@ namespace CSharpRecordGenerator
             this.txtOutput.Size = new System.Drawing.Size(340, 292);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "[[OUTPUT]]";
-            // 
-            // chkStruct
-            // 
-            this.chkStruct.AutoSize = true;
-            this.chkStruct.Location = new System.Drawing.Point(3, 26);
-            this.chkStruct.Name = "chkStruct";
-            this.chkStruct.Size = new System.Drawing.Size(54, 17);
-            this.chkStruct.TabIndex = 4;
-            this.chkStruct.Text = "Struct";
-            this.chkStruct.UseVisualStyleBackColor = true;
+            this.txtOutput.WordWrap = false;
             // 
             // Form1
             // 
@@ -237,6 +250,7 @@ namespace CSharpRecordGenerator
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmReadOnly;
         private System.Windows.Forms.CheckBox chkStruct;
+        private System.Windows.Forms.CheckBox chkEquality;
     }
 }
 

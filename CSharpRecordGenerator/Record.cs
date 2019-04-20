@@ -13,14 +13,16 @@ namespace CSharpRecordGenerator
 
         public bool UsesProperites { get; set; }
         public bool CreateStruct { get; set; }
+        public bool CreateEqualityOperators { get; set; }
 
         public const string IND = "    ";
 
-        public Record(string name, bool usesProperties, bool createStruct)
+        public Record(string name, bool usesProperties, bool createStruct, bool createEqualityChecks)
         {
             Name = name;
             UsesProperites = usesProperties;
             CreateStruct = createStruct;
+            CreateEqualityOperators = createEqualityChecks;
         }
 
         public string Generate()
@@ -39,7 +41,13 @@ namespace CSharpRecordGenerator
             if (!CreateStruct || Fields.Any())
             {
                 CreateConstructor(s);
-            }            
+            }
+
+            if (CreateEqualityOperators && Fields.Any())
+            {
+                GenerateEqualityOperators(s);
+            }
+            
 
 
             s.AppendLine($"}}");
@@ -50,20 +58,7 @@ namespace CSharpRecordGenerator
         private void CreateConstructor(StringBuilder s)
         {
             s.AppendLine();
-            s.Append($"{IND}public {Name.NormalizeCaps(true)}(");
-
-            foreach (RecordField i in Fields)
-            {
-                s.Append($"{i.DataType} {i.Name.NormalizeCaps(false)},");
-            }
-
-            //Remove trailing comma
-            if (s[s.Length - 1] == ',')
-            {
-                s.Remove(s.Length - 1, 1);
-            }
-
-            s.AppendLine(")");
+            s.AppendLine($"{IND}public {Name.NormalizeCaps(true)}({string.Join(", ", Fields.Select(i => $"{i.DataType} {i.Name.NormalizeCaps(false)}"))})");
             s.AppendLine($"{IND}{{");
 
             foreach (RecordField i in Fields)
@@ -71,6 +66,43 @@ namespace CSharpRecordGenerator
                 s.AppendLine($"{IND}{IND}{i.Name.NormalizeCaps(true)} = {i.Name.NormalizeCaps(false)};");
             }
 
+            s.AppendLine($"{IND}}}");
+        }
+
+        private void GenerateEqualityOperators(StringBuilder s)
+        {
+            s.AppendLine();
+
+            //==
+            s.AppendLine($"{IND}public static bool operator ==({Name.NormalizeCaps(true)} left, {Name.NormalizeCaps(true)} right)");
+            s.AppendLine($"{IND}{{");
+            s.AppendLine($"{IND}{IND}return {string.Join(" && ", Fields.Select(i => $"left.{i.Name.NormalizeCaps(true)} == right.{i.Name.NormalizeCaps(true)}"))};");
+            s.AppendLine($"{IND}}}");
+            s.AppendLine();
+
+            //!=
+            s.AppendLine($"{IND}public static bool operator !=({Name.NormalizeCaps(true)} left, {Name.NormalizeCaps(true)} right)");
+            s.AppendLine($"{IND}{{");
+            s.AppendLine($"{IND}{IND}return !(left == right);");
+            s.AppendLine($"{IND}}}");
+            s.AppendLine();
+
+            //Equals()
+            s.AppendLine($"{IND}public override bool Equals(object obj)");
+            s.AppendLine($"{IND}{{");
+            s.AppendLine($"{IND}{IND}if (obj is {Name.NormalizeCaps(true)})");
+            s.AppendLine($"{IND}{IND}{{");
+            s.AppendLine($"{IND}{IND}{IND}return ({Name.NormalizeCaps(true)})obj == this;");
+            s.AppendLine($"{IND}{IND}}}");
+            s.AppendLine($"{IND}{IND}");
+            s.AppendLine($"{IND}{IND}return false;");
+            s.AppendLine($"{IND}}}");
+            s.AppendLine();
+
+            //GetHashCode()
+            s.AppendLine($"{IND}public override int GetHashCode()");
+            s.AppendLine($"{IND}{{");
+            s.AppendLine($"{IND}{IND}return {string.Join(" ^ ", Fields.Select(i => i.Name.NormalizeCaps(true) + ".GetHashCode()")) };");
             s.AppendLine($"{IND}}}");
         }
     }

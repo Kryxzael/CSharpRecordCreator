@@ -23,10 +23,10 @@ namespace CSharpRecordGenerator
         {
             if (usesProperites)
             {
-                return $"public {DataType} {Name} {{ get; {(ReadOnly ? "" : "set; ")}}}";
+                return $"public {DataType} {Name.NormalizeCaps(true)} {{ get; {(ReadOnly ? "" : "set; ")}}}";
             }
 
-            return $"public {DataType}{(ReadOnly ? " readonly" : "")} {Name};";
+            return $"public {DataType}{(ReadOnly ? " readonly" : "")} {Name.NormalizeCaps(true)};";
         }
     }
 }
